@@ -28,7 +28,7 @@ def index(request):
     # context = RequestContext(request, {
     # 	'latest_poll_list': latest_poll_list
     # 	})
-    return HttpResponseRedirect(reverse('/static/html/index.html'))
+    return HttpResponseRedirect('/static/html/index.html')
 
 # def detail(request, poll_id):
 # 	try:
