@@ -1,4 +1,5 @@
 # Django settings for mysite project.
+from bae.core import const
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,12 +13,12 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'myGoWebDatabase',                      # Or path to database file if using sqlite3.
+        'NAME': 'ZsxGbNtYdnfXqfrlLurW',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'zzq',
-        'PASSWORD': 'zzq_sjtu',
-        'HOST': '127.0.0.1',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '3306',                      # Set to empty string for default.
+        'USER': const.MYSQL_USER,
+        'PASSWORD': const.MYSQL_PASS,
+        'HOST': const.MYSQL_HOST,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': const.MYSQL_PORT,                      # Set to empty string for default.
     }
 }
 
@@ -69,6 +70,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    # "../static/"
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -108,7 +110,7 @@ ROOT_URLCONF = 'mysite.urls'
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '../templates'
+    #'../static/html'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
