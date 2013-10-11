@@ -7,12 +7,12 @@ from django.views import generic
 
 from polls.models import Poll, Choice
 
-class IndexView(generic.ListView):
-	template_name = 'static/html/polls/index.html'
-	context_object_name = 'latest_poll_list' 
+# class IndexView(generic.ListView):
+# 	template_name = 'static/html/polls/index.html'
+# 	context_object_name = 'latest_poll_list' 
 
-	def get_queryset(self):
-	 	return Poll.objects.order_by('-pub_date')[:5]
+# 	def get_queryset(self):
+# 	 	return Poll.objects.order_by('-pub_date')[:5]
 
 class DetailView(generic.DetailView): 
 	model = Poll
@@ -22,13 +22,13 @@ class ResultsView(generic.DetailView):
 	model = Poll
 	template_name = "polls/results.html"
 
-# def index(request):
-#     latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
-#     template = loader.get_template('polls/index.html')
-#     context = RequestContext(request, {
-#     	'latest_poll_list': latest_poll_list
-#     	})
-#     return HttpResponse(template.render(context))
+def index(request):
+    # latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
+    # # template = loader.get_template('polls/index.html')
+    # context = RequestContext(request, {
+    # 	'latest_poll_list': latest_poll_list
+    # 	})
+    return HttpResponseRedirect(reverse('/static/html/index.html'))
 
 # def detail(request, poll_id):
 # 	try:
