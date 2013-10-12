@@ -13,9 +13,9 @@
 import os
 import sys
  
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'weightplan.settings'
  
-path = os.path.dirname(os.path.abspath(__file__)) + '/mysite'
+path = os.path.dirname(os.path.abspath(__file__)) + '/weightplan'
 if path not in sys.path:
     sys.path.insert(1, path)
  
