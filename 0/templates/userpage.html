@@ -156,10 +156,12 @@
 		console.log(Start_Date);
 		var senddata = Start_Date.split("-");
 		console.log(senddata.length);
-		var year;
-		var month;
-		var day;
-		[year, month, day] = senddata
+		var i = 0
+		var year = senddata[i]; i++;
+		var month = senddata[i]; i++;
+		var day = senddata[i]; i++;
+		//alert("123")
+		//[year, month, day] = senddata
 		console.log(day)
 		xmlhttp.open("GET","/weight/requestweightdata/"+User_Id+"/"+year+"/"+month+"/"+day, true);
 		xmlhttp.send();
