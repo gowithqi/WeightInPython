@@ -41,7 +41,7 @@ def login(request):
 
 def requestweightdata(request, user_id, year, month, day):
 	user = User.objects.get(id=user_id)
-	weights = user.weightrecord_set.filter(date__gte=datetime(year=int(year), month=int(month), day=int(day))).values('date').annotate(avgw=Avg('weight'))
+	weights = user.weightrecord_set.filter(date__gte=datetime(year=int(year), month=int(month), day=int(day))).order_by('date').values('date').annotate(avgw=Avg('weight'))
 	res = ""
 	for w in weights:
 		res = res + str(w['date'].year) + '-' + str(w['date'].month) + '-' + str(w['date'].day) + '-' + str(w['avgw'])+"\n"
