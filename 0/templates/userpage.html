@@ -194,6 +194,13 @@
 		  }
 		xmlhttp.onreadystatechange=function()
 		  {
+		  	// var res = xmlhttp.responseText;
+		   //  alert("record successfully, Your weight today is " + res + "kg");
+		  	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		    {
+		    	var res = xmlhttp.responseText;
+		    	alert("record successfully, Your weight today is " + res + "kg");
+		  	}
 		  }
 		console.log("fuck")
 		xmlhttp.open("GET","/weight/submit/?"+"weight="+Weight+"&user_id="+User_Id, true);

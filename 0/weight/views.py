@@ -58,7 +58,7 @@ def submit(request):
 	record = WeightRecord.objects.create(user=user, weight=Decimal(request.GET['weight']).quantize(Decimal('100.0')))
 	print "aaaa"	
 
-	return HttpResponse()
+	return HttpResponse(request.GET['weight'])
 
 # def index(request):
 #     latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
