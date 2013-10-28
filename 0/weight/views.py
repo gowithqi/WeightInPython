@@ -15,6 +15,12 @@ from weight.models import User, WeightRecord
 # now = datetime.utcnow().replace(tzinfo=CST)
 
 def index(request):
+	try:
+		if request.session['haveLogin'] == True: 
+			print "have logincd"
+			return HttpResponseRedirect('/weight/login/')
+	except KeyError: pass
+
 	template = loader.get_template("login.html")
 	context = RequestContext(request, {
 		"id": "5"
@@ -23,6 +29,22 @@ def index(request):
 	return HttpResponse(template.render(context))
 
 def login(request):
+	if request.method == 'GET':
+		try:
+			if request.session['haveLogin'] == True : 
+				print "Using session"
+				print "user id: ", request.session.get('user_id', 0)
+				user = User.objects.get(id = request.session.get('user_id', 0))
+				template = loader.get_template("userpage.html")
+				# user = user.values()
+				print user.username
+				context = RequestContext(request,{
+					'u': user,
+					})
+				return HttpResponse(template.render(context))
+		except KeyError: 
+			return HttpResponse("You haven't login")
+
 	try:
 		user = User.objects.get(username=request.POST['username'])
 		if (user.password != request.POST['password']): 
@@ -31,6 +53,9 @@ def login(request):
 		user = User(username=request.POST['username'], password=request.POST['password'])
 		user.save()
 
+	request.session['haveLogin'] = True
+	request.session['user_id'] = user.id
+	print "user id", user.id
 	template = loader.get_template("userpage.html")
 	# user = user.values()
 	print user.username
@@ -59,6 +84,12 @@ def submit(request):
 	print "aaaa"	
 
 	return HttpResponse(request.GET['weight'])
+	# template = loader.get_template("login.html")
+	# context = RequestContext(request, {
+	# 	"id": "5"
+	# 	})
+	# return HttpResponse(template.render(context))
+
 
 # def index(request):
 #     latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
